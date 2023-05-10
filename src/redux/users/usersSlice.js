@@ -14,7 +14,6 @@ export const getUsers = createAsyncThunk(
     try {
       const response = await fetch(url);
       const data = await response.json();
-      // console.log(data.results);
       return data.results;
       
     } catch (error) {
@@ -38,7 +37,6 @@ const usersSlice = createSlice({
     });
     builder.addCase(getUsers.rejected, (state, action) => {
       state.error = 'Something went wrong';
-      // console.log(action);
       state.isLoading = false;
     });
   },

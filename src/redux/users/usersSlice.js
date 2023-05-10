@@ -28,21 +28,20 @@ const usersSlice = createSlice({
   reducers: {
     
   },
-  extraReducers: {
-    [getUsers.pending]: (state) => {
-      state.isLoading = true
-    },
-    [getUsers.fulfilled]: (state, action) => {
-      // console.log(action);
+  extraReducers: (builder) => {
+    builder.addCase(getUsers.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
       state.isLoading = false;
       state.users = action.payload;
-    },
-    [getUsers.rejected]: (state, action) => {
+    });
+    builder.addCase(getUsers.rejected, (state, action) => {
+      state.error = 'Something went wrong';
       // console.log(action);
       state.isLoading = false;
-    },
+    });
   },
 });
 
-// export const { addBook, removeBook } = usersSlice.actions;
 export default usersSlice.reducer;

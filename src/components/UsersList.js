@@ -1,8 +1,14 @@
-// import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUsers } from '../redux/users/usersSlice';
 
 function UsersList() {
   const { users, isLoading, error } = useSelector((store) => store.users);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, []);
 
   if (isLoading) {
     return (
